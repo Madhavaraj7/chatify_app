@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  background-image: url("./pixelcut-export.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+
+::-webkit-scrollbar {/* Importing the Work Sans font from Google Fonts */
+    @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
+    
+    /* Styling for the main App container */
+    .App {
+      min-height: 100vh; /* Ensures the app takes at least the full height of the viewport */
+      display: flex; /* Uses flexbox for layout */
+      background-image: url("./pixelcut-export.jpeg"); /* Sets the background image */
+      background-position: center; /* Centers the background image */
+      background-size: cover; /* Ensures the background image covers the entire container */
+    }
+    
+    /* Customizing the scrollbar */
+    ::-webkit-scrollbar {
+      width: 0px; /* Hides the scrollbar */
+    }
+    
+    /* Customizing the scrollbar thumb */
+    ::-webkit-scrollbar-thumb {
+      background: rgba(136, 136, 136, 0.281); /* Light gray thumb for visibility */
+    }
+    
+    /* Darker thumb on hover for better visibility */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.281);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
