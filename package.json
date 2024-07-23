@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node backend/index.js",
     "dev": "nodemon backend/index.js",
-    "build": "npm install --legacy-peer-deps && cd frontend && npm install --legacy-peer-deps && cd .. && npm start"
+    "build": "npm install --legacy-peer-deps && cd frontend && npm install --legacy-peer-deps && npm run build && cd .. && npm start"
   },
   "author": "Madhav",
   "license": "ISC",
