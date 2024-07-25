@@ -16,6 +16,9 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 // Initialize dotenv to load environment variables
 dotenv.config();
 
+
+
+
 // Connect to the database
 connectDB();
 
