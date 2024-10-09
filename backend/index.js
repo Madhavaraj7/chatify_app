@@ -10,15 +10,13 @@ import { chats } from "./data/data.js";
 import connectDB from "./config/db.js";
 import userRoute from "./routes/userRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
-import messageRoutes from './routes/messageRoute.js';
+import messageRoutes from "./routes/messageRoute.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 // Initialize dotenv to load environment variables
 dotenv.config();
 
-
 const FRONTEND_ENV = process.env.FRONTEND_ENV;
-
 
 // Connect to the database
 connectDB();
@@ -29,15 +27,15 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: FRONTEND_ENV.replace(/\/$/, ""),  // Ensure no trailing slash
+    origin: FRONTEND_ENV.replace(/\/$/, ""), // Ensure no trailing slash
     credentials: true,
   })
 );
 app.use(express.json());
 // Routes
 app.use("/api/user", userRoute);
-app.use('/api/chat', chatRoutes);
-app.use('/api/message', messageRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/message", messageRoutes);
 
 // Deployment
 // const __dirname = path.resolve();
@@ -69,7 +67,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
 // Set up Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:5173"], 
+    origin: [FRONTEND_ENV],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
@@ -93,9 +91,9 @@ io.on("connection", (socket) => {
   socket.on("typing", (room) => socket.in(room).emit("typing"));
   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
 
-  socket.on('sendNotification', (notification) => {
+  socket.on("sendNotification", (notification) => {
     console.log("Notification:", notification);
-    io.emit('receiveNotification', notification);
+    io.emit("receiveNotification", notification);
   });
 
   socket.on("new message", (newMessageReceived) => {
@@ -110,7 +108,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     console.log("USER DISCONNECTED");
     // Additional cleanup can be done here if needed
   });

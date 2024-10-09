@@ -100,7 +100,7 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(import.meta.env.VITE_APP_BACKEND_ENV+ ':5000/api/chat', { userId }, config);
+      const { data } = await axios.post(import.meta.env.VITE_APP_BACKEND_ENV+ '/api/chat', { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
