@@ -123,7 +123,7 @@ const Signup = () => {
       };
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/user",
+        import.meta.env.VITE_APP_BACKEND_ENV+ "/api/user",
         { name, email, password, pic },
         config
       );

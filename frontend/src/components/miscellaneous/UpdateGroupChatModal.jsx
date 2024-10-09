@@ -51,7 +51,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`http://localhost:5000/api/user?search=${query}`, config);
+      const { data } = await axios.get(import.meta.env.VITE_APP_BACKEND_ENV+ `:5000/api/user?search=${query}`, config);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -78,7 +78,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/rename`,
+        import.meta.env.VITE_APP_BACKEND_ENV+ `/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName,
@@ -134,7 +134,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/groupadd`,
+        import.meta.env.VITE_APP_BACKEND_ENV+ `/api/chat/groupadd`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -178,7 +178,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:5000/api/chat/groupremove`,
+        import.meta.env.VITE_APP_BACKEND_ENV+ `/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: user1._id,

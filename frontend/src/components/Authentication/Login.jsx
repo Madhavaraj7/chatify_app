@@ -43,18 +43,21 @@ const Login = () => {
       });
       return;
     }
-  
+
     setLoading(true);
-  
+
     try {
-      const response = await fetch("http://localhost:5000/api/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
+      const response = await fetch(
+        import.meta.env.VITE_APP_BACKEND_ENV + "/api/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
       if (!response.ok) {
         const errorData = await response.json();
         let errorMessage = "Email or password incorrect!";
@@ -63,7 +66,7 @@ const Login = () => {
         }
         throw new Error(errorMessage);
       }
-  
+
       const data = await response.json();
       toast({
         title: "Registration Successful",
@@ -74,7 +77,7 @@ const Login = () => {
       });
       console.log("Login successful", data);
       localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate("/chats"); 
+      navigate("/chats");
     } catch (error) {
       toast({
         title: "Error",
@@ -87,7 +90,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <VStack spacing="10px">

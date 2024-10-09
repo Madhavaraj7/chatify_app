@@ -26,7 +26,7 @@ function SideDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io(import.meta.env.VITE_APP_BACKEND_ENV);
     setSocket(newSocket);
   
     newSocket.on('receiveNotification', (notification) => {
@@ -74,7 +74,7 @@ function SideDrawer() {
         },
       };
 
-      const { data } = await axios.get(`http://localhost:5000/api/user?search=${search}`, config);
+      const { data } = await axios.get(import.meta.env.VITE_APP_BACKEND_ENV+ `/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
@@ -100,7 +100,7 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post('http://localhost:5000/api/chat', { userId }, config);
+      const { data } = await axios.post(import.meta.env.VITE_APP_BACKEND_ENV+ ':5000/api/chat', { userId }, config);
 
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
