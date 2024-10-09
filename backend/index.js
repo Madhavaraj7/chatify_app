@@ -26,10 +26,7 @@ const app = express();
 
 // Middleware
 app.use(
-  cors({
-    origin: FRONTEND_ENV.replace(/\/$/, ""), // Ensure no trailing slash
-    credentials: true,
-  })
+  cors()
 );
 app.use(express.json());
 // Routes
